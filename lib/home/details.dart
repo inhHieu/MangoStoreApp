@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../cart.dart';
-import 'package:mango/cart.dart';
+import 'package:mango/login/controller/auth.dart';
+import '../cart_controller.dart';
+import 'package:mango/cart_controller.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 class Details extends StatelessWidget {
   final products;

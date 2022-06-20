@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mango/const/firebase.dart';
 import 'package:get/get.dart';
 
+class useri4 {
+  storeNewUser(user, contex) {}
+}
+
 class AuthenticationService {
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -55,6 +59,12 @@ class AuthenticationService {
     }
   }
 
+  // Future<String> getUID() async {
+  //   String _uid = _firebaseAuth.currentUser!.uid;
+  //   firebaseFirestore.collection('users').doc(_uid).get(
+  //     name
+  //   )
+  // }
   // _addUserToFirestore(String userId) {
   //   firebaseFirestore.collection('users').doc(userId).set({
   //     "name": name.text.trim(),
