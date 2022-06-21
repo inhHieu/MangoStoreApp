@@ -10,7 +10,7 @@ validateNull(String? value1, String? value2) {
   return value1 == null || value1.isEmpty || value2 == null || value2.isEmpty
       ? Get.snackbar(
           "Thông tin giao hàng chưa hợp lệ", 'Vui lòng cập nhật ở mục Cá nhân')
-      : null;
+      : Get.snackbar("Đặt hàng thành công", 'Cám ơn bạn đã mua hàng tại MANGO');
 }
 
 validatePassword(String? value, var pass1, var pass2) {

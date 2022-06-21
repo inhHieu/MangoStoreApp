@@ -28,6 +28,9 @@ class _BabyState extends State<Baby> {
         if (snapshot.hasError) {
           return Text('errrror');
         }
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        }
 
         return GridView.count(
             crossAxisCount: 2,

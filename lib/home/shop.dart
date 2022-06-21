@@ -23,9 +23,9 @@ class _ShopState extends State<Shop> {
         body: StreamBuilder(
       stream: product,
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        // if (snapshot.hasData) {
-        //   return Text('data');
-        // }
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        }
         if (snapshot.hasError) {
           return Text('errrror');
         }

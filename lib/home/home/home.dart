@@ -20,6 +20,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             TabBar(

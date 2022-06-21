@@ -199,7 +199,7 @@ class _CartState extends State<Cart> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: TextButton(
+                  child: ElevatedButton(
                     child: const Text(
                       'Có',
                       style: TextStyle(
@@ -221,7 +221,7 @@ class _CartState extends State<Cart> {
                 ),
                 SizedBox(width: 5),
                 Expanded(
-                  child: TextButton(
+                  child: ElevatedButton(
                     child: const Text('Không',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),

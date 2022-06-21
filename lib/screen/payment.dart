@@ -92,9 +92,9 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                 Row(
                                   children: [
                                     Text(myName),
-                                    const SizedBox(width: 10),
+                                    const SizedBox(width: 20),
                                     Text('SDT:'),
-                                    const SizedBox(width: 10),
+                                    const SizedBox(width: 5),
                                     Text(mySDT)
                                   ],
                                 ),
@@ -104,7 +104,7 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                 Row(
                                   children: [
                                     Text('Email:'),
-                                    const SizedBox(width: 10),
+                                    const SizedBox(width: 5),
                                     Text(myEmail),
                                   ],
                                 ),
@@ -114,7 +114,7 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                 Row(
                                   children: [
                                     Text('Địa chỉ:'),
-                                    const SizedBox(width: 10),
+                                    const SizedBox(width: 5),
                                     Text(myAddress),
                                   ],
                                 ),

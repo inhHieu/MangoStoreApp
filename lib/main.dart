@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mango/login/controller/auth.dart';
+import 'package:mango/screen/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'const/checkuser.dart';
 import 'login/screen/startingpage.dart';
 import 'package:get/get.dart';
 import 'screen/appbar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,24 +44,13 @@ class _MyAppState extends State<MyApp> {
             primaryColor: Colors.white,
             // fontFamily: 'Montserrat',
           ),
-          home: checkuser()),
+          home: SplashScreen()),
     );
   }
 }
 
-class checkuser extends StatelessWidget {
-  const checkuser({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User?>();
 
-    if (firebaseUser != null) {
-      return appbar();
-    }
-    return Startpage();
-  }
-}
 
       // body: Center(
       //   child: _widgetOptions.elementAt(_selectedIndex),
