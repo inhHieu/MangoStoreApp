@@ -1,6 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mango/login/controller/validate.dart';
+import 'package:provider/provider.dart';
+
+import '../../login/controller/auth.dart';
 
 class Person extends StatefulWidget {
   const Person({
@@ -14,12 +19,18 @@ class Person extends StatefulWidget {
 class _PersonState extends State<Person> {
   late String myName;
   late String myEmail;
+  late String mySDT;
+  late String myAddress;
   // DocumentReference user = firebaseFirestore.collection('user').doc('a');
   // final _uid = FirebaseAuth.instance.currentUser;
   // final Stream<QuerySnapshot> user =
   //     FirebaseFirestore.instance.collection('users').doc(_uid.uid).get();
   @override
   Widget build(BuildContext context) {
+    final TextEditingController addressController = TextEditingController();
+    final TextEditingController sdtController = TextEditingController();
+    GlobalKey<FormState> formState = GlobalKey<FormState>();
+
     return Column(children: [
       FutureBuilder(
         future: _fetch(),
@@ -27,11 +38,99 @@ class _PersonState extends State<Person> {
           if (snapshot.connectionState != ConnectionState.done) {
             return const CircularProgressIndicator();
           } else {
-            return Column(
-              children: [
-                Text('Chào ' + myName),
-                Text('Email: ' + myEmail),
-              ],
+            return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Chào ' + myName),
+                  const SizedBox(height: 5),
+                  Text('Email: ' + myEmail),
+                  const SizedBox(height: 5),
+                  Text('SDT: ' + mySDT),
+                  const SizedBox(height: 5),
+                  Text('Địa chỉ nhận hàng: ' + myAddress),
+                  const SizedBox(height: 5),
+                  Form(
+                    key: formState,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          validator: (value) => validateString(value),
+                          controller: addressController,
+                          decoration: const InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.black38,
+                              ),
+                            ),
+                            labelText: "Địa chỉ",
+                            floatingLabelStyle: TextStyle(color: Colors.black),
+                            labelStyle: TextStyle(color: Colors.black38),
+                          ),
+                        ),
+                        TextFormField(
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          ],
+                          keyboardType: TextInputType.number,
+                          validator: (value) => validateNumber(value),
+                          controller: sdtController,
+                          decoration: const InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.black38,
+                              ),
+                            ),
+                            labelText: "Số điện thoại",
+                            floatingLabelStyle: TextStyle(color: Colors.black),
+                            labelStyle: TextStyle(color: Colors.black38),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          if (formState.currentState!.validate()) {
+                            await context.read<AuthenticationService>().edit(
+                                  sdt: sdtController.text.trim(),
+                                  address: addressController.text.trim(),
+                                );
+                            setState(() {});
+                          }
+                        },
+                        child: Text('Update'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.black,
+                          // fixedSize: Size(300, 40),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0.0)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 100),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<AuthenticationService>().signout();
+                      },
+                      child: Text('Đăng Xuất'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.black,
+                        fixedSize: Size(300, 40),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           }
         },
@@ -75,6 +174,8 @@ class _PersonState extends State<Person> {
           .then((ds) {
         myName = ds['name'];
         myEmail = ds['email'];
+        myAddress = ds['address'];
+        mySDT = ds['sdt'];
         print(myName);
       }).catchError((e) {
         print(e);

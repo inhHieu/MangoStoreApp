@@ -28,8 +28,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
               indicatorColor: Colors.black,
               indicatorSize: TabBarIndicatorSize.label,
               indicatorWeight: 3,
-              // isScrollable: true,
-              labelPadding: EdgeInsets.zero,
+              isScrollable: true,
+              // labelPadding: EdgeInsets.zero,
               controller: _tabController,
               labelStyle: const TextStyle(fontWeight: FontWeight.bold),
               tabs: const [
@@ -45,7 +45,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
             ),
             SizedBox(
               width: double.maxFinite,
-              height: 568,
+              height: MediaQuery.of(context).size.height * 0.73,
               child: TabBarView(
                 controller: _tabController,
                 children: const [

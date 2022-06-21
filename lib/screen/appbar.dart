@@ -35,20 +35,13 @@ class _appbarState extends State<appbar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     home(),
-// <<<<<<< Updated upstream:lib/appbar.dart
-    // Text(
-    //   'Destiny 3',
-    //   style: optionStyle,
-    // ),
     Text(
       'Mango Boutique',
       style: optionStyle,
     ),
-    person(),
-// =======
+    Person(),
     Category(),
     Person()
-// >>>>>>> Stashed changes:lib/screen/appbar.dart
   ];
 
   void _onItemTapped(int index) {
@@ -60,6 +53,7 @@ class _appbarState extends State<appbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 100,
@@ -104,43 +98,46 @@ class _appbarState extends State<appbar> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Mua sắm',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Danh mục',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Tôi',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
+      bottomNavigationBar: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.07,
+        child: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Mua sắm',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Danh mục',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Cá nhân',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.black,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
 }
 // <<<<<<< Updated upstream:lib/appbar.dart
 
-class person extends StatelessWidget {
-  const person({
-    Key? key,
-  }) : super(key: key);
+// class person extends StatelessWidget {
+//   const person({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {
-          context.read<AuthenticationService>().signout();
-        },
-        child: Text('signed out'));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ElevatedButton(
+//         onPressed: () {
+//           context.read<AuthenticationService>().signout();
+//         },
+//         child: Text('signed out'));
+//   }
+// }
 // =======9pp
 // >>>>>>> Stashed changes:lib/screen/appbar.dart

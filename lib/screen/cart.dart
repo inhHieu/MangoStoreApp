@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mango/screen/payment.dart';
 import '../model/cart_model.dart';
 
@@ -79,6 +80,11 @@ class _CartState extends State<Cart> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(cart[index].ten),
+                                IconButton(
+                                    onPressed: () {
+                                      _showMyDialog(index);
+                                    },
+                                    icon: Icon(Icons.remove_circle_outline)),
                                 Text(
                                   cart[index].gia,
                                   style: const TextStyle(
@@ -136,11 +142,17 @@ class _CartState extends State<Cart> {
                               ElevatedButton(
                                 onPressed: () {
                                   debugPrint(cart.toString());
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PaymentConfirm()),
-                                  );
+                                  if (cart.isNotEmpty) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              PaymentConfirm()),
+                                    );
+                                  } else {
+                                    Get.snackbar('Giỏ hàng trống',
+                                        'Không có gì để thanh toán cả :(');
+                                  }
                                 },
                                 child: const Text(
                                   'Thanh toán',
@@ -165,6 +177,70 @@ class _CartState extends State<Cart> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(index) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Xóa sản phẩm'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Bạn có muốn xóa sản phẩm nay khỏi giỏ hàng không?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: TextButton(
+                    child: const Text(
+                      'Có',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      fixedSize: Size(120, 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0),
+                          side: BorderSide(color: Colors.black12)),
+                    ),
+                    onPressed: () {
+                      cart.removeAt(index);
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    },
+                  ),
+                ),
+                SizedBox(width: 5),
+                Expanded(
+                  child: TextButton(
+                    child: const Text('Không',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      fixedSize: Size(120, 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

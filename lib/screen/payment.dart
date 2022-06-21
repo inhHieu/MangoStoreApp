@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mango/login/controller/validate.dart';
 import '../model/payment_controller.dart';
 import '../model/cart_model.dart';
 import 'package:mango/screen/person/person.dart';
@@ -92,6 +93,8 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                   children: [
                                     Text(myName),
                                     const SizedBox(width: 10),
+                                    Text('SDT:'),
+                                    const SizedBox(width: 10),
                                     Text(mySDT)
                                   ],
                                 ),
@@ -108,14 +111,18 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                Text(myAddress),
+                                Row(
+                                  children: [
+                                    Text('Địa chỉ:'),
+                                    const SizedBox(width: 10),
+                                    Text(myAddress),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         Container(
                           color: Colors.white,
                           //user information
@@ -198,9 +205,7 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                     const Text('Thanh toán khi giao hàng')
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
+                                const SizedBox(height: 5),
                                 Row(
                                   children: [
                                     IconButton(
@@ -264,9 +269,7 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         //=======
                         Container(
                           color: Colors.white,
@@ -307,9 +310,7 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         //====
                       ],
                     ),
@@ -356,6 +357,8 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
                                         // paymentMethod =
                                         //     await PaymentService().createPaymentMethod();
                                         // print(paymentMethod!.id);
+                                        validateNull(myAddress, mySDT);
+                                        // validateNull(mySDT);
                                       },
                                       child: const Text(
                                         'ĐẶT HÀNG',
