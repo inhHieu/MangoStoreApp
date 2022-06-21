@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-import 'shop.dart';
-import 'package:mango/cart.dart';
-=======
 import 'package:get/get.dart';
 import 'package:mango/login/controller/auth.dart';
 import '../model/cart_model.dart';
 import 'package:mango/model/cart_model.dart';
->>>>>>> Stashed changes
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import 'package:mango/model/cart_model.dart';
 
-class Details extends StatelessWidget {
+class Details_Copy extends StatelessWidget {
   final products;
-  Details({Key? key, this.products}) : super(key: key);
+  Details_Copy({Key? key, this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class Details extends StatelessWidget {
                               color: Colors.black87),
                         ),
                         Text(
-                          products['gia'],
+                          products['gia'].toString(),
                           style: const TextStyle(
                               decoration: TextDecoration.none,
                               fontSize: 18,
@@ -61,9 +58,9 @@ class Details extends StatelessWidget {
                       children: [
                         IconButton(
                             padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
+                            constraints: const BoxConstraints(),
                             onPressed: () {},
-                            icon: Icon(Icons.ios_share_sharp)),
+                            icon: const Icon(Icons.ios_share_sharp)),
                         RatingBar.builder(
                           initialRating: 3.4,
                           minRating: 1,
@@ -72,8 +69,9 @@ class Details extends StatelessWidget {
                           itemCount: 5,
                           itemSize: 15,
                           ignoreGestures: true,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 0),
-                          itemBuilder: (context, _) => Icon(
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 0),
+                          itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Colors.amber,
                           ),
@@ -131,10 +129,25 @@ class Details extends StatelessWidget {
                       icon: const Icon(Icons.favorite_border_outlined)),
                   ElevatedButton(
                     onPressed: () {
-                      // cart = cart + products;
-                      // debugPrint(cart[0]);
+                      String id = products['id'];
+                      String ten = products['ten'];
+                      String gia = products['gia'].toString();
+                      String url = products['url'];
+                      int soluong = 1;
+                      // Item(ten, gia, url) ;
+                      myCart.add(id);
+                      // ten.clear();
+                      ten = gia = url = '';
+                      debugPrint(myCart.toString());
+                      Get.snackbar(
+                          'Đã thêm vào giỏ hàng', '${products['ten']}');
                     },
-                    child: Text('THÊM VÀO GIỎ HÀNG'),
+                    child: Text(
+                      'THÊM VÀO GIỎ HÀNG',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.black,
                       fixedSize: Size(300, 35),
@@ -149,6 +162,8 @@ class Details extends StatelessWidget {
     );
   }
 }
+
+
 
 /* return Scaffold(
       body: SingleChildScrollView(

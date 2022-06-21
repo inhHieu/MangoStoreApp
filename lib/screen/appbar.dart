@@ -1,8 +1,23 @@
+<<<<<<< Updated upstream:lib/appbar.dart
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:mango/login/controller/auth.dart';
 import 'bag.dart';
 import 'home/home.dart';
+=======
+import 'package:mango/const/firebase.dart';
+import 'package:mango/screen/cart_firebase.dart';
+import 'package:mango/screen/category/category.dart';
+import 'package:mango/screen/person/person.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:mango/login/controller/auth.dart';
+import 'cart.dart';
+import '../home/home.dart';
+import '../login/controller/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+>>>>>>> Stashed changes:lib/screen/appbar.dart
 
 class appbar extends StatefulWidget {
   const appbar({
@@ -19,6 +34,7 @@ class _appbarState extends State<appbar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     home(),
+<<<<<<< Updated upstream:lib/appbar.dart
     // Text(
     //   'Destiny 3',
     //   style: optionStyle,
@@ -28,6 +44,10 @@ class _appbarState extends State<appbar> {
       style: optionStyle,
     ),
     person()
+=======
+    Category(),
+    Person()
+>>>>>>> Stashed changes:lib/screen/appbar.dart
   ];
 
   void _onItemTapped(int index) {
@@ -74,7 +94,7 @@ class _appbarState extends State<appbar> {
                 debugPrint('bag tapped.');
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Bag()),
+                  MaterialPageRoute(builder: (context) => Cart()),
                 );
               },
               icon: const Icon(Icons.shopping_bag_outlined)),
@@ -105,6 +125,7 @@ class _appbarState extends State<appbar> {
     );
   }
 }
+<<<<<<< Updated upstream:lib/appbar.dart
 
 class person extends StatelessWidget {
   const person({
@@ -120,3 +141,5 @@ class person extends StatelessWidget {
         child: Text('signed out'));
   }
 }
+=======
+>>>>>>> Stashed changes:lib/screen/appbar.dart

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login/screen/startingpage.dart';
 import 'package:get/get.dart';
-import 'appbar.dart';
+import 'screen/appbar.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
