@@ -71,7 +71,7 @@ class _PaymentConfirmState extends State<PaymentConfirm> {
           future: _fetch(),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             } else {
               return Container(
                 color: Colors.black12,

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mango/home/details.dart';
-import 'package:mango/home/details_copy.dart';
-import 'data.dart';
+import 'package:mango/home/home/details.dart';
+import 'package:mango/home/home/details_copy.dart';
+import '../const/data.dart';
 
 class Shop extends StatefulWidget {
   const Shop({Key? key}) : super(key: key);

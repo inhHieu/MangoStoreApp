@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:mango/login/controller/auth.dart';
 import '../bag.dart';
-import '../home/home.dart';
+import '../home/home/home.dart';
 // =======
 import 'package:mango/const/firebase.dart';
 import 'package:mango/screen/cart_firebase.dart';
@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:mango/login/controller/auth.dart';
 import 'cart.dart';
-import '../home/home.dart';
+import '../home/home/home.dart';
 import '../screen/category/category.dart';
 import '../login/controller/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -41,7 +41,7 @@ class _appbarState extends State<appbar> {
     //   style: optionStyle,
     // ),
     Text(
-      'Destiny 3',
+      'Mango Boutique',
       style: optionStyle,
     ),
     person(),

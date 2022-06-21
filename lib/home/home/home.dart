@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mango/home/baby.dart';
+import 'package:mango/home/female.dart';
+import 'package:mango/home/plussize.dart';
 import 'package:mango/home/shop.dart';
+
+import '../male.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -28,10 +33,10 @@ class _homeState extends State<home> with TickerProviderStateMixin {
               controller: _tabController,
               labelStyle: const TextStyle(fontWeight: FontWeight.bold),
               tabs: const [
+                Tab(text: 'NỮ'),
                 Tab(text: 'SHOP'),
                 Tab(text: 'PlUS SIZE'),
                 Tab(text: 'NAM'),
-                Tab(text: 'NỮ'),
                 Tab(text: 'TRẺ EM'),
               ],
             ),
@@ -43,13 +48,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
               height: 568,
               child: TabBarView(
                 controller: _tabController,
-                children: [
+                children: const [
+                  Female(),
                   Shop(),
-                  // Text('1'),
-                  Text('2'),
-                  Text('3'),
-                  Text('3'),
-                  Text('3'),
+                  Plussize(),
+                  Male(),
+                  Baby(),
                 ],
               ),
             ),

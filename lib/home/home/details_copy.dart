@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mango/login/controller/auth.dart';
-import '../model/cart_model.dart';
+import '../../model/cart_model.dart';
 import 'package:mango/model/cart_model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
