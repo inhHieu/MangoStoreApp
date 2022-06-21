@@ -75,7 +75,7 @@ class _ShopState extends State<Shop> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            productss['gia'] + 'đ',
+                            productss['gia'].toString() + 'đ',
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),

@@ -1,17 +1,3 @@
-<<<<<<< Updated upstream:lib/cart.dart
-import 'dart:ffi';
-
-import 'package:get/get.dart';
-
-class CartController extends GetxController {
-  static CartController instance = Get.find();
-  RxDouble totalCartPrice = 0.0.obs;
-
-  @override
-  Void onReady() {
-    super.onReady();
-    ever(listener, callback)
-=======
 import 'package:flutter/material.dart';
 import 'package:mango/screen/payment.dart';
 import '../model/cart_model.dart';
@@ -180,6 +166,5 @@ class _CartState extends State<Cart> {
         ),
       ),
     );
->>>>>>> Stashed changes:lib/screen/cart.dart
   }
 }

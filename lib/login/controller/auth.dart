@@ -55,14 +55,14 @@ class AuthenticationService {
     }
   }
 
-<<<<<<< Updated upstream
-=======
+// <<<<<<< Updated upstream
+// =======
   // Future<String> getUID() async {
   //   String _uid = _firebaseAuth.currentUser!.uid;
   //   firebaseFirestore.collection('users').doc(_uid).get().then(
   // (value) => null)
   // }
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
   // _addUserToFirestore(String userId) {
   //   firebaseFirestore.collection('users').doc(userId).set({
   //     "name": name.text.trim(),
