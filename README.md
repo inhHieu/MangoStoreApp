@@ -1,6 +1,7 @@
 # mango
 
-A new Flutter project.
+This project is for one of the subjects in my university, where I had the opportunity to learn about Flutter and mobile development. 
+It was intended to be a team project, but I ended up working on it by myself. There's no shame on my friends, it's just one of those things that happen when we're young and inexperienced.
 
 ## Getting Started
 
